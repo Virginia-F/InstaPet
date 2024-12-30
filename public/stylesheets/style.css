@@ -1,0 +1,389 @@
+:root {
+  --dark-brown: #8b6348;
+  --brown: #bc9f8b;
+  --light-brown: #BEB29F;
+  --dark-green: #3c552d;
+  --green: #b5cfb7;
+  --light-green: #cadabf;
+  --light: #e7e8d8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.section-bienvenida {
+  background-image: linear-gradient(
+      rgba(188, 159, 139, 0.492),
+      rgba(188, 159, 139, 0.446)
+    ),
+    url("/images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-block: 3rem;
+
+  
+}
+
+.article-inicio {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: bold;
+  background-color: var(--brown);
+  border-radius: 20px;
+
+  
+
+  h1 {
+    color: var(--light);
+    span {
+      color: var(--dark-brown);
+      font-size: bolder;
+    }
+  }
+
+  p {
+    font-size: 20px;
+    color: var(--light);
+  }
+}
+
+@media (width <= 600px) {
+  .article-inicio {
+    width: 90%;
+  }
+}
+
+/* -----Navbar-------- */
+
+.modern-gradient {
+  background: rgb(84, 71, 63);
+  background: linear-gradient(
+    90deg,
+    rgba(84, 71, 63, 1) 0%,
+    rgba(139, 99, 72, 1) 35%,
+    rgba(231, 232, 216, 1) 100%
+  );
+}
+
+.img-logo {
+  border-radius: 25px;
+  width: 5rem;
+  transition: width 0.1s linear 0.1s;
+
+  &:hover {
+    width: 6rem;
+    transition: width 0.1s linear 0.1s;
+  }
+}
+
+#modal {
+  opacity: 0;
+  transform: scaleY(0);
+
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out,
+    overlay 0.5s ease-out allow-discrete, display 0.5s ease-out allow-discrete;
+
+  &[open] {
+    opacity: 1;
+    transform: scaleY(1);
+
+    @starting-style {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+}
+
+.div-nav {
+  width: 200px;
+  height: 40px;
+  margin: 1rem;
+}
+
+.a-nav {
+  text-decoration: none;
+  color: var(--light);
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 1rem;
+
+  transition: color 0.1s linear 0.1s;
+
+  &:hover {
+    color: var(--brown);
+    transition: color 0.1s linear 0.1s;
+    
+  }
+}
+
+.btn-nav {
+  background-color: var(--dark-brown);
+  box-shadow: var(--brown) 2px 0 10px;
+  border: none;
+  border-radius: 18px;
+  padding: 0.5rem;
+  padding-inline: 1.5rem;
+  color: bisque;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 1rem;
+
+  transition: padding 0.1s linear 0.1s, padding-inline 0.1s linear 0.1s;
+
+  &:hover {
+    
+    transition: background-color 0.1s linear 0.1s, color 0.1s linear 0.1s;
+    background-color: var(--brown);
+    color: var(--dark-brown);
+  }
+}
+
+.btn-ver {
+  margin: 0;
+}
+
+/* ------------general views------------- */
+
+.bg-fondo {
+  background-color: var(--light);
+}
+
+.padding-y-section {
+  padding-block: 5rem;
+}
+
+.animation-title {
+  color: var(--dark-brown);
+}
+
+/* ---------section-one-member------------ */
+.oneMember {
+  background-color: var(--light-green);
+  color: var(--medium-violet);
+  font-weight: bold;
+  img {
+    box-shadow: var(--dark-green) 2px 0 10px;
+  }
+  span {
+    color: var(--dark-brown);
+    font-weight: bolder;
+  }
+
+  article {
+    background-color: var(--green);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--dark-green) 2px 0 10px;
+    p {
+      color: var(--dark-green);
+    }
+  }
+}
+
+/* -----------formulario modal---------  */
+
+.modal-form {
+  margin: auto;
+  width: 550px;
+  color: var(--dark-violet);
+  background-color: #bc9f8be3;
+  border: 1px solid var(--dark-brown);
+  border-radius: 20px;
+
+  .form-modal {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    row-gap: 1rem;
+    margin-block: 3rem;
+  }
+
+  label {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+    color: var(--dark-brown);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+
+  label:has(textarea) {
+    width: 100%;
+  }
+  textarea {
+    resize: vertical;
+    field-sizing: content;
+    min-height: 2rem;
+  }
+}
+form :is(input, textarea) {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--dark-brown);
+  width: 100%;
+}
+
+.resaltar {
+  color: var(--brown);
+}
+
+i {
+  color: var(--dark-brown);
+  transition: color 0.1s linear 0.1s;
+
+  &:hover {
+    color: var(--light);
+    transition: background-color 0.1s linear 0.1s;
+  }
+}
+
+/* ------------cards------------- */
+
+.card {
+  background-color: var(--brown);
+  box-shadow: var(--dark-brown) 2px 0 10px;
+}
+
+.body-card {
+  background-color: var(--light-brown);
+
+  span {
+    font-weight: bold;
+    color: var(--dark-brown);
+  }
+
+  p {
+    color: var(--dark-brown);
+  }
+}
+
+.card-pet {
+  background-color: var(--light-brown) !important;
+}
+
+/* --------------form------------------- */
+
+.formularios {
+  background-image: linear-gradient(
+      rgba(188, 159, 139, 0.492),
+      rgba(188, 159, 139, 0.446)
+    ),
+    url("/images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-block: 4rem;
+
+  h1 {
+    color: var(--dark-brown);
+  }
+  form {
+    width: 550px;
+    color: var(--dark-brown);
+    background-color: var(--light-brown);
+    border: 1px solid var(--dark-brown);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    row-gap: 1rem;
+    margin-block: 3rem;
+    box-shadow: var(--dark-brown) 2px 0 10px;
+
+    label {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2px;
+      color: var(--dark-brown);
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    select {
+      background-color: var(--dark-brown);
+      color: var(--light);
+      border-radius: 10px;
+      padding: 0.5rem;
+      border: none;
+      font-weight: bold;
+    }
+
+    label:has(textarea) {
+      width: 100%;
+    }
+    textarea {
+      resize: vertical;
+      field-sizing: content;
+      min-height: 2rem;
+    }
+  }
+  form :is(input, textarea) {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--dark-brown);
+    width: 100%;
+  }
+}
+
+@media (width <= 600px) {
+  .formularios form {
+    width: 100%;
+  }
+}
+
+.footer-gradient {
+  background-image: linear-gradient(
+    to top in lch,
+    color(display-p3 25% 25% 100%) 0%,
+    color(display-p3 100% 85% 30% / 32%) 100%
+  );
+}
+
+.card-footer {
+  width: 80%;
+  background-image: linear-gradient(
+    rgba(246, 246, 246, 0.398),
+    rgba(251, 251, 251, 0.295)
+  );
+}
+
+.body-card-footer {
+  h5 {
+    font-weight: bolder;
+    color: var(--light);
+    text-shadow: var(--dark-brown) 2px 0 10px;
+  }
+
+  p {
+    font-weight: bold;
+    text-shadow: var(--dark-brown) 2px 0 10px;
+    color: var(--light);
+  }
+}
+
+.p-footer {
+  color: var(--light);
+  text-shadow: var(--dark-brown) 1px 0 5px;
+}
+
+.card-text {
+  color: var(--dark-brown);
+}
+
+.subrayado {
+  width: 9rem;
+  border-bottom: 3px solid var(--dark-brown);
+  margin-bottom: 1rem;
+}

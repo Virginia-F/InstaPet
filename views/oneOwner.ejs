@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfil dueñ@</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
+    <link rel="icon" href="/images/logod.png" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/3947aef1e2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header><%- include('modules/navbar.ejs') %></header>
+    <main class="bg-fondo">
+      <section>
+        <div class="d-flex flex-wrap flex-start align-items-center ms-5 py-5">
+          <div class="d-flex flex-column">
+            <h2 class="animation-title">Perfil de <span class="resaltar"><%= resultOwner.name %></span></h2>
+            <div class="subrayado"></div>
+          </div>
+          <button class="btn-nav mb-5" id="open-modal">Añadir mascota</button>
+        </div>
+        <div class="container-fluid oneMember">
+          <div class="container-xxl">
+            <div class="row d-flex justify-content-center">
+              <div
+                style="width: 400px; height: 450px"
+                class="col-12 col-md-6 d-flex align-items-center"
+              >
+                <img
+                  class="w-100 rounded"
+                  src="/images/owner/<%= resultOwner.image?resultOwner.image : 'boy.png' %>"
+                  alt="Foto usuario"
+                />
+              </div>
+              <div class="col-12 col-md-6 d-flex align-items-center">
+                <article>
+                  <p class="fs-3 pb-2">
+                    <span>Información</span>
+                  </p>
+                  <p><span>Nombre: </span><%= resultOwner.name %></p>
+                  <p><span>Apellidos: </span><%= resultOwner.last_name %></p>
+                  <p><span>Sobre mí: </span><%= resultOwner.description %></p>
+                  <p><span>Email: </span><%= resultOwner.email %></p>
+                  <p><span>Contacto: </span><%= resultOwner.phone_number %></p>
+                  <div>
+                    <button
+                      onclick="window.location.href='/owner/edit/<%= resultOwner.owner_id %>'"
+                      class="btn-nav"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onclick="window.location.href='/owner/logicDel/<%= resultOwner.owner_id %>'"
+                      class="btn-nav"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dialog class="modal-form" id="modal">
+          <form
+            class="form-modal d-flex flex-column gap-2"
+            action="/pet/add/<%= resultOwner.owner_id %>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="d-flex justify-content-end">
+              <i id="close-modal" class="bi bi-x-circle-fill fs-3"></i>
+            </div>
+            <div>
+              <label for="">Nombre de la mascota</label>
+              <input type="text" name="name" />
+            </div>
+            <div>
+              <label for="">Especie</label>
+              <input type="text" name="species" />
+            </div>
+            <div>
+              <label for="">Año de adopción</label>
+              <input type="text" name="year_adoption" />
+            </div>
+            <div>
+              <label for="">descripción</label>
+              <input type="textarea" name="description" />
+            </div>
+            <div class="d-flex flex-row flex-start">
+              <label for="img"
+                ><img
+                  style="width: 60px; height: 60px"
+                  src="/images/logod.png"
+                  alt=""
+              /></label>
+
+              <input type="file" id="img" name="img" hidden />
+            </div>
+            <button class="btn-nav">Añadir mascota</button>
+          </form>
+        </dialog>
+      </section>
+
+      <!------------Section-pets ---------------->
+
+      <section class="padding-y-section section-pets">
+        <div class="d-flex flex-column ms-5">
+          <h2 class="animation-title">Mis <span class="resaltar">mascotas</span></h2>
+          <div class="subrayado"></div>
+        </div>
+        <div class="container-lg d-flex justify-content-center flex-column align-items-center">
+          <% resultPet.forEach((elem)=>{ %>
+          <div class="card card-pet rounded-4 mb-3 w-75">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="/images/pet/<%= elem.pet_img?elem.pet_img:'cat.png' %>"
+                  class="img-fluid rounded-start-4"
+                  alt="Foto mascota"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="body-card card-body rounded-end-4">
+                  <p class="fs-3 pb-2">
+                    <span class="card-title"><%= elem.name %></span>
+                  </p>
+                  <p><span>Especie: </span><%= elem.species %></p>
+                  <p><span>Año de adopción: </span><%= elem.year_adoption %></p>
+                  <p><span>Información: </span><%= elem.description %></p>
+                  <div class="d-flex justify-content-around align-items-end">
+                    <a
+                      href="/pet/edit/<%= elem.pet_id %>"
+                      class="btn-nav text-decoration-none"
+                      >Editar</a
+                    >
+                    <a
+                      href="/pet/delPet/<%= elem.pet_id %>"
+                      class="btn-nav text-decoration-none"
+                      >Eliminar</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+
+    <%- include('modules/footer') %>
+
+    <script>
+      const openButton = document.getElementById("open-modal");
+      const closeButton = document.getElementById("close-modal");
+      const modal = document.getElementById("modal");
+
+      openButton.addEventListener("click", () => {
+        modal.showModal();
+      });
+
+      closeButton.addEventListener("click", () => {
+        modal.close();
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
